@@ -22,9 +22,9 @@
       font-family: system-ui, -apple-system, "Pretendard", "Noto Sans KR", Arial, sans-serif;
       min-height:100vh;
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:center;
-      overflow:hidden;
+      overflow:auto;
     }
 
     /* 중앙 라임 글로우 */
@@ -42,14 +42,14 @@
 
     .wrap{
       width:min(1200px, 92vw);
-      padding:48px 24px 32px;
+      padding: clamp(18px, 4vh, 48px) 24px 28px;
       text-align:center;
       position:relative;
       z-index:1;
     }
 
     .title-top{
-      font-size:72px;
+      font-size: clamp(34px, 5.5vw, 72px);
       font-weight:800;
       letter-spacing:-1px;
       line-height:1;
@@ -57,7 +57,7 @@
       opacity:0.95;
     }
     .title-main{
-      font-size:100px;
+      font-size: clamp(44px, 6.8vw, 100px);
       font-weight:900;
       letter-spacing:-2px;
       line-height:1;
@@ -90,22 +90,23 @@
 
     .grid{
       display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: clamp(10px, 1.6vh, 14px);
       width:min(980px, 92vw);
       margin: 0 auto;
     }
-    @media (min-width: 980px){
-      .grid{ grid-template-columns: repeat(3, 1fr); }
+    /* 아주 작은 화면에서는 2열로 고정 (가독성) */
+    @media (max-width: 620px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
     }
 
     .btn{
-      height:88px;
+      height: clamp(56px, 8vh, 84px);
       border-radius:18px;
       border: 1px solid rgba(200,255,0,0.18);
       background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
       color: var(--text);
-      font-size:28px;
+      font-size: clamp(18px, 2.4vw, 28px);
       font-weight:900;
       cursor:pointer;
       transition: transform .06s ease, border-color .2s ease, background .2s ease;
@@ -172,10 +173,11 @@
     <div id="grid" class="grid"></div>
 
     <div class="bar">
-      <button class="small" onclick="location.reload()">새로고침</button>
+      <button class="small" onclick="(function(){const u=new URL(location.href);u.searchParams.set('v', Date.now());location.replace(u.toString());})()">강제 새로고침</button>
       <button class="small primary" onclick="location.href='https://localvision-for-sosang-ujb.pages.dev'">테스트 이동</button>
     </div>
 
+    <div style="margin-top:10px;color:rgba(255,255,255,0.55);font-size:12px;">로드된 매장: <b id="loadedCount">-</b>개 · 마지막 갱신: <span id="loadedAt">-</span></div>
     <div id="err" class="err"></div>
   </div>
 
@@ -187,9 +189,16 @@
       err.textContent = '';
 
       try{
-        const res = await fetch('./stores.json', { cache: 'no-store' });
+        const bust = Date.now();
+        const res = await fetch(`./stores.json?v=${bust}`, { cache: 'no-store' });
         if(!res.ok) throw new Error('stores.json 불러오기 실패: ' + res.status);
         const stores = await res.json();
+
+        // 디버그: 로드된 매장 수 표시
+        const loadedCount = document.getElementById('loadedCount');
+        const loadedAt = document.getElementById('loadedAt');
+        if (loadedCount) loadedCount.textContent = String(Array.isArray(stores) ? stores.length : 0);
+        if (loadedAt) loadedAt.textContent = new Date().toLocaleString();
 
         if(!Array.isArray(stores) || stores.length === 0){
           throw new Error('stores.json이 비었거나 형식이 잘못됨');
@@ -207,6 +216,7 @@
       }
     }
     loadStores();
+    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) loadStores(); });
   </script>
 </body>
 </html>
