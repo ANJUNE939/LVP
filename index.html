@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LocalVision Launcher</title>
+  <style>
+    :root{
+      --bg:#05070a;
+      --lime:#c8ff00;
+      --text:#f2f4f8;
+      --muted:#97a3b0;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.10);
+      --line: rgba(200,255,0,0.35);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Pretendard", "Noto Sans KR", Arial, sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* 중앙 라임 글로우 */
+    .glow{
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(circle at 50% 40%,
+          rgba(200,255,0,0.22) 0%,
+          rgba(200,255,0,0.10) 22%,
+          rgba(200,255,0,0.04) 38%,
+          rgba(0,0,0,0) 62%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+
+    .wrap{
+      width:min(1200px, 92vw);
+      padding:48px 24px 32px;
+      text-align:center;
+      position:relative;
+      z-index:1;
+    }
+
+    .title-top{
+      font-size:72px;
+      font-weight:800;
+      letter-spacing:-1px;
+      line-height:1;
+      margin:0 0 12px;
+      opacity:0.95;
+    }
+    .title-main{
+      font-size:100px;
+      font-weight:900;
+      letter-spacing:-2px;
+      line-height:1;
+      margin:0;
+      color: var(--lime);
+      text-shadow: 0 0 16px rgba(200,255,0,0.25);
+    }
+    .underline{
+      width:min(880px, 86vw);
+      height:6px;
+      margin:14px auto 22px;
+      background: var(--lime);
+      box-shadow: 0 0 18px rgba(200,255,0,0.18);
+      opacity:0.9;
+    }
+
+    .sub1{
+      margin:0;
+      font-size:14px;
+      letter-spacing:2px;
+      color: rgba(200,255,0,0.55);
+    }
+    .sub2{
+      margin:10px 0 26px;
+      font-size:22px;
+      color: var(--text);
+      opacity:0.92;
+      font-weight:700;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+      width:min(980px, 92vw);
+      margin: 0 auto;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .btn{
+      height:88px;
+      border-radius:18px;
+      border: 1px solid rgba(200,255,0,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      color: var(--text);
+      font-size:28px;
+      font-weight:900;
+      cursor:pointer;
+      transition: transform .06s ease, border-color .2s ease, background .2s ease;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    }
+    .btn:hover{
+      border-color: rgba(200,255,0,0.35);
+      background: linear-gradient(180deg, rgba(200,255,0,0.10), rgba(255,255,255,0.05));
+    }
+    .btn:active{ transform: scale(0.99); }
+
+    .bar{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+    }
+    .small{
+      height:54px;
+      border-radius:16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size:18px;
+      font-weight:800;
+      cursor:pointer;
+      padding: 0 18px;
+    }
+    .small.primary{
+      background: rgba(200,255,0,0.90);
+      color:#071000;
+      border-color: rgba(200,255,0,0.60);
+      box-shadow: 0 0 18px rgba(200,255,0,0.14);
+    }
+
+    .err{
+      margin-top:14px;
+      color: #ffb4b4;
+      font-size:16px;
+      font-weight:700;
+      opacity:0.95;
+    }
+
+    /* TV에서 글자 너무 크면 여기만 줄이면 됨 */
+    @media (max-width: 720px){
+      .title-top{font-size:44px;}
+      .title-main{font-size:64px;}
+      .btn{font-size:22px; height:76px;}
+      .sub2{font-size:18px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <div class="wrap">
+    <h1 class="title-top">WE ARE</h1>
+    <h2 class="title-main">LOCAL VISION.</h2>
+    <div class="underline"></div>
+
+    <p class="sub1">UIJEONGBU LOCAL AD NETWORK</p>
+    <p class="sub2">매장을 선택하면 TV 재생 화면으로 이동합니다</p>
+
+    <div id="grid" class="grid"></div>
+
+    <div class="bar">
+      <button class="small" onclick="location.reload()">새로고침</button>
+      <button class="small primary" onclick="location.href='https://localvision-for-sosang-ujb.pages.dev'">테스트 이동</button>
+    </div>
+
+    <div id="err" class="err"></div>
+  </div>
+
+  <script>
+    async function loadStores(){
+      const grid = document.getElementById('grid');
+      const err = document.getElementById('err');
+      grid.innerHTML = '';
+      err.textContent = '';
+
+      try{
+        const res = await fetch('./stores.json', { cache: 'no-store' });
+        if(!res.ok) throw new Error('stores.json 불러오기 실패: ' + res.status);
+        const stores = await res.json();
+
+        if(!Array.isArray(stores) || stores.length === 0){
+          throw new Error('stores.json이 비었거나 형식이 잘못됨');
+        }
+
+        for(const s of stores){
+          const btn = document.createElement('button');
+          btn.className = 'btn';
+          btn.textContent = s.name || '이름없음';
+          btn.onclick = () => location.href = s.url;
+          grid.appendChild(btn);
+        }
+      }catch(e){
+        err.textContent = '목록을 불러오지 못했습니다. (stores.json 확인)  ' + e.message;
+      }
+    }
+    loadStores();
+  </script>
+</body>
+</html>
