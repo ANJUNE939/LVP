@@ -1,7 +1,7 @@
 [
   {
     "name": "샛별꽃집",
-    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=sbflower"
+    "https://localvision-for-sosang-ujb.pages.dev/?store=sbflower&restart=09:30&restartMode=reload&restartJitterSec=0r"
   },
   {
     "name": "JT치킨",
@@ -10,5 +10,9 @@
   {
     "name": "JP분식",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=jpbunsik"
+  },
+  {
+    "name": "곱네",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=gobne&leftBase=https://pub-5b322b5af83a4b308a3aeafb1506ee1b.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
   }
 ]
