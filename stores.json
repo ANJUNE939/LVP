@@ -32,6 +32,10 @@
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=haegeumgang&leftBase=https://pub-a4135e10093c4039963c4d2fa24acd71.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
   },
   {
+    "name": "닥터홍짐",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=drhong&leftBase=https://pub-391c47d616ee4bf7acc6d9300c09ff95.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
+  },
+  {
     "name": "홍연재",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=hongyeonjae&leftBase=https://pub-6dbda320a0554be68195c408420f3270.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
   }
