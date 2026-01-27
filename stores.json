@@ -35,6 +35,10 @@
     "name": "닥터홍짐",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=drhong&leftBase=https://pub-391c47d616ee4bf7acc6d9300c09ff95.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
   },
+ {
+    "name": "코리아바베큐(용현)",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=korbabecue-yong&leftBase=https://pub-cad9addcb6864a89a4ce53e90cd1e491.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
+  },
   {
     "name": "홍연재",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=hongyeonjae&leftBase=https://pub-6dbda320a0554be68195c408420f3270.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0"
