@@ -28,6 +28,10 @@
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=gobne&leftBase=https://pub-5b322b5af83a4b308a3aeafb1506ee1b.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
   {
+    "name": "바네",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=bane&leftBase=https://pub-148fe94f0fad4841b9e01527b04976ae.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
+  {
     "name": "해금강",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=haegeumgang&leftBase=https://pub-a4135e10093c4039963c4d2fa24acd71.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
