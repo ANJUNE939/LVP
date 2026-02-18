@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LocalVision Launcher</title>
+  <style>
+    :root{
+      --bg:#05070a;
+      --lime:#c8ff00;
+      --text:#f2f4f8;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Pretendard","Noto Sans KR",Arial,sans-serif;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      overflow:auto;
+    }
+    .glow{
+      position:fixed; inset:-20%;
+      background:radial-gradient(circle at 50% 40%,
+        rgba(200,255,0,0.20) 0%,
+        rgba(200,255,0,0.08) 25%,
+        rgba(0,0,0,0) 60%);
+      filter:blur(2px);
+      pointer-events:none;
+    }
+    .wrap{
+      width:min(1200px, 92vw);
+      padding:32px 24px 28px;
+      text-align:center;
+      position:relative;
+      z-index:1;
+    }
+    .title-top{font-size:56px;font-weight:800;margin:0;opacity:.92;letter-spacing:-1px;}
+    .title-main{font-size:78px;font-weight:900;margin:10px 0 0;color:var(--lime);letter-spacing:-2px;}
+    .underline{width:min(880px,86vw);height:6px;margin:16px auto 18px;background:var(--lime);opacity:.9;}
+    .sub1{margin:0;font-size:14px;letter-spacing:2px;color:rgba(200,255,0,.55);}
+    .sub2{margin:10px 0 16px;font-size:20px;font-weight:800;opacity:.92;}
+
+    .statusTop{
+      width:min(980px,92vw);
+      margin: 0 auto 16px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      justify-content:center; align-items:center;
+      font-size:13px; color:rgba(255,255,255,.78);
+    }
+    .pill{
+      display:inline-flex; gap:6px; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      font-weight:900;
+    }
+    .dot{width:9px;height:9px;border-radius:999px;display:inline-block;}
+    .dot.on{background:#24e36f;}
+    .dot.off{background:#ff5252;}
+    .dot.unk{background:#ffcc00;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:12px;
+      width:min(980px,92vw);
+      margin:0 auto;
+    }
+    .btn{
+      height:98px;
+      border-radius:18px;
+      border:1px solid rgba(200,255,0,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      color:var(--text);
+      cursor:pointer;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:8px;
+      padding:10px 12px;
+      text-shadow:0 1px 0 rgba(0,0,0,.4);
+      transition:transform .06s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover{
+      border-color:rgba(200,255,0,.35);
+      background:linear-gradient(180deg, rgba(200,255,0,.10), rgba(255,255,255,.05));
+    }
+    .btn:active{transform:scale(.99);}
+    .btnTitle{font-size:26px;font-weight:900;letter-spacing:-.5px;line-height:1.05;}
+    .btnSub{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+    .mini{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 10px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:12px;font-weight:900;
+    }
+    .mini.on{border-color:rgba(36,227,111,.35);}
+    .mini.off{border-color:rgba(255,82,82,.35);}
+    .mini.unk{border-color:rgba(255,204,0,.35);}
+
+    .bar{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+    .small{
+      height:54px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-size:16px;font-weight:900;
+      cursor:pointer;padding:0 16px;
+    }
+    .small.primary{
+      background:rgba(200,255,0,.90);
+      color:#071000;
+      border-color:rgba(200,255,0,.60);
+    }
+    .meta{margin-top:10px;color:rgba(255,255,255,.55);font-size:12px;}
+    .err{margin-top:14px;color:#ffb4b4;font-size:15px;font-weight:800;white-space:pre-wrap;}
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <div class="wrap">
+    <h1 class="title-top">WE ARE</h1>
+    <h2 class="title-main">LOCAL VISION.</h2>
+    <div class="underline"></div>
+
+    <p class="sub1">UIJEONGBU LOCAL AD NETWORK</p>
+    <p class="sub2">매장을 선택하면 TV 재생 화면으로 이동합니다</p>
+
+    <div id="statusTop" class="statusTop"></div>
+    <div id="grid" class="grid"></div>
+
+    <div class="bar">
+      <button class="small" onclick="location.replace(location.pathname + '?v=' + Date.now())">강제 새로고침</button>
+      <button class="small" onclick="location.href='./status.html'">상태표(상세)</button>
+      <button class="small" onclick="location.href='./admin_ping.html'">관리자 하트비트</button>
+      <button class="small primary" onclick="location.href='https://localvision-for-sosang-ujb.pages.dev'">테스트 이동</button>
+    </div>
+
+    <div class="meta">
+      로드된 매장: <b id="loadedCount">-</b>개 · 마지막 갱신: <span id="loadedAt">-</span> · 상태 갱신: <span id="statusAt">-</span>
+    </div>
+
+    <div id="err" class="err"></div>
+  </div>
+
+<script>
+  // ===== 설정 =====
+  const DEFAULT_STATUS_API = 'https://lv-status-api.kiklekidz.workers.dev';
+  const STATUS_API = (new URLSearchParams(location.search).get('statusBase') || DEFAULT_STATUS_API).replace(/\/+$/, '');
+  const REFRESH_MS = 10_000;
+
+  // ===== 유틸 =====
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, m => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+  }[m]));
+
+  function storeFromUrl(url){
+    try{
+      const u = new URL(url, location.href);
+      return (u.searchParams.get('store') || '').trim().toLowerCase();
+    }catch(e){ return ''; }
+  }
+
+  function toMs(x){
+    const n = Number(x);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function calcOnline(lastSeenMs, ttlSec){
+    if(!lastSeenMs) return { state:'MISS', online:false };
+    const ageSec = Math.max(0, Math.floor((Date.now() - lastSeenMs)/1000));
+    const online = ageSec <= ttlSec;
+    return { state: online ? 'ON' : 'OFF', online, ageSec };
+  }
+
+  async function fetchStatus(role){
+    const url = `${STATUS_API}/status/all?role=${encodeURIComponent(role)}&t=${Date.now()}`;
+    try{
+      const res = await fetch(url, { cache:'no-store' });
+      const data = await res.json().catch(()=>null);
+      if(!data || data.ok !== true) return { ok:false, role, url, ttlSec:120, items:[], err:'bad_json' };
+      return { ok:true, role, url, ttlSec:Number(data.ttlSec||120), items:Array.isArray(data.items)?data.items:[] };
+    }catch(e){
+      return { ok:false, role, url, ttlSec:120, items:[], err:String(e?.message || e) };
+    }
+  }
+
+  function mapByStore(items){
+    const m = new Map();
+    for(const it of (items||[])){
+      const store = String(it.store||'').trim().toLowerCase();
+      if(store) m.set(store, it);
+    }
+    return m;
+  }
+
+  function miniPill(label, state){
+    const cls = (state==='ON')?'on':(state==='OFF')?'off':'unk';
+    const dot = (state==='ON')?'on':(state==='OFF')?'off':'unk';
+    const text = (state==='ON')?'ONLINE':(state==='OFF')?'OFFLINE':'미수신';
+    return `<span class="mini ${cls}"><span class="dot ${dot}"></span>${esc(label)} <b>${text}</b></span>`;
+  }
+
+  // ===== 렌더 =====
+  let STORES = [];
+
+  async function loadStores(){
+    const res = await fetch(`./stores.json?v=${Date.now()}`, { cache:'no-store' });
+    if(!res.ok) throw new Error('stores.json 불러오기 실패: ' + res.status);
+    const stores = await res.json();
+    if(!Array.isArray(stores) || stores.length === 0) throw new Error('stores.json 형식 오류(배열/내용 확인)');
+    STORES = stores.map(s => ({
+      name: s.name || '이름없음',
+      url: s.url,
+      store: (s.store || storeFromUrl(s.url) || '').toLowerCase(),
+    }));
+    document.getElementById('loadedCount').textContent = String(STORES.length);
+    document.getElementById('loadedAt').textContent = new Date().toLocaleString();
+  }
+
+  function renderTop(tvRes, adRes, tvOnline, adOnline, total){
+    const el = document.getElementById('statusTop');
+    el.innerHTML = `
+      <span class="pill"><span class="dot ${tvRes.ok?'on':'unk'}"></span>TV API: ${tvRes.ok?'OK':'FAIL'}</span>
+      <span class="pill"><span class="dot ${adRes.ok?'on':'unk'}"></span>ADMIN API: ${adRes.ok?'OK':'FAIL'}</span>
+      <span class="pill"><span class="dot on"></span>TV ONLINE ${tvOnline}/${total}</span>
+      <span class="pill"><span class="dot on"></span>ADMIN ONLINE ${adOnline}/${total}</span>
+      <span class="pill">TTL: TV ${tvRes.ttlSec}s / ADMIN ${adRes.ttlSec}s</span>
+    `;
+  }
+
+  function renderGrid(tvMap, adMap, ttlTv, ttlAd){
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+
+    let tvOnline = 0;
+    let adOnline = 0;
+
+    for(const s of STORES){
+      const tvRec = s.store ? tvMap.get(s.store) : null;
+      const adRec = s.store ? adMap.get(s.store) : null;
+
+      const tv = calcOnline(toMs(tvRec?.lastSeen), ttlTv);
+      const ad = calcOnline(toMs(adRec?.lastSeen), ttlAd);
+
+      if(tv.online) tvOnline++;
+      if(ad.online) adOnline++;
+
+      const btn = document.createElement('button');
+      btn.className = 'btn';
+      btn.onclick = () => location.href = s.url;
+
+      btn.title =
+        `store=${s.store || '(없음)'}\n` +
+        (tvRec ? `TV lastSeen=${tvRec.lastSeenIso || tvRec.lastSeen} ip=${tvRec.ip||''} colo=${tvRec.colo||''}` : 'TV: 미수신') + '\n' +
+        (adRec ? `ADMIN lastSeen=${adRec.lastSeenIso || adRec.lastSeen} ip=${adRec.ip||''} colo=${adRec.colo||''}` : 'ADMIN: 미수신');
+
+      btn.innerHTML = `
+        <div class="btnTitle">${esc(s.name)}</div>
+        <div class="btnSub">
+          ${miniPill('TV', tv.state)}
+          ${miniPill('ADMIN', ad.state)}
+        </div>
+      `;
+      grid.appendChild(btn);
+    }
+
+    return { tvOnline, adOnline, total: STORES.length };
+  }
+
+  async function refresh(){
+    const err = document.getElementById('err');
+    err.textContent = '';
+
+    const [tvRes, adRes] = await Promise.all([fetchStatus('tv'), fetchStatus('admin')]);
+    const tvMap = mapByStore(tvRes.items);
+    const adMap = mapByStore(adRes.items);
+
+    const { tvOnline, adOnline, total } = renderGrid(tvMap, adMap, tvRes.ttlSec, adRes.ttlSec);
+    renderTop(tvRes, adRes, tvOnline, adOnline, total);
+
+    document.getElementById('statusAt').textContent = new Date().toLocaleTimeString();
+
+    const msgs = [];
+    if(!tvRes.ok) msgs.push(`TV 상태 API 실패(CORS/URL 확인)\n${tvRes.url}\n${tvRes.err||''}`);
+    if(!adRes.ok) msgs.push(`ADMIN 상태 API 실패(CORS/URL 확인)\n${adRes.url}\n${adRes.err||''}`);
+    const missingStore = STORES.filter(x => !x.store).map(x => x.name);
+    if(missingStore.length) msgs.push(`⚠️ store 파라미터가 없는 항목: ${missingStore.join(', ')}`);
+    if(msgs.length) err.textContent = msgs.join('\n\n');
+  }
+
+  async function boot(){
+    await loadStores();
+    await refresh();
+  }
+
+  boot().catch(e => document.getElementById('err').textContent = String(e?.message||e));
+  setInterval(refresh, REFRESH_MS);
+</script>
+</body>
+</html>
+
