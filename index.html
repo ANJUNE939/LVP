@@ -149,7 +149,7 @@
 
 <script>
   // ===== 설정 =====
-  const DEFAULT_STATUS_API = 'https://lv-status-api.kiklekidz.workers.dev';
+  const DEFAULT_STATUS_API = 'https://lv-heartbeat-api.kiklekidz.workers.dev';
   const STATUS_API = (new URLSearchParams(location.search).get('statusBase') || DEFAULT_STATUS_API).replace(/\/+$/, '');
   const REFRESH_MS = 10_000;
 
