@@ -20,6 +20,18 @@
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=guggi&leftBase=https://pub-7ff12f45ca254bceaeaa7187bd253ec6.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
   {
+    "name": "교촌(금오)",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=kyochon-geumo&leftBase=https://pub-801735ffa2944d099afeb055d36737a0.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
+  {
+    "name": "신인자",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=shininja&leftBase=https://pub-aa35882c178f4b8083c06e967b1a4a03.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
+  {
+    "name": "해뜨루",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=haethurul&leftBase=https://pub-31942deef4514cb4ab87b800d38dfd6d.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
+  {
     "name": "숙이네",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=sugine&leftBase=https://pub-c700402f51e644df978fb3990e32d112.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
@@ -41,7 +53,7 @@
   },
   {
     "name": "경원식당",
-    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=kyungwon&leftBase=https://pub-e31b6c5fd8cb49ddb9c041ff58571448.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=kyungwon&leftBase=https://pub-e31b6c5fd8cb49ddb9c041ff58571448.r2.dev&restart=07:00&blankReloadSec=60&reloadMin=30&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
   {
     "name": "네네(고산)",
