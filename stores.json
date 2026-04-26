@@ -23,6 +23,10 @@
     "name": "교촌금오",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=kyochon-geumo&leftBase=https://pub-801735ffa2944d099afeb055d36737a0.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
+ {
+    "name": "캠프306",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=camp306&leftBase=https://pub-af03640b55be4bfab5f7b3a20dc00211.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
   {
     "name": "구끼구끼",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=guggi&leftBase=https://pub-7ff12f45ca254bceaeaa7187bd253ec6.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
