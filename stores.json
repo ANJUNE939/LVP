@@ -15,6 +15,14 @@
     "name": "곱네",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=gobne&leftBase=https://pub-5b322b5af83a4b308a3aeafb1506ee1b.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
+  {
+    "name": "오가리",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=ogari&leftBase=https://pub-2e503aa61bff47f2a89028a849ac06a0.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
+  {
+    "name": "황소",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=hwangso&leftBase=https://pub-4ccb9278ccfa46eb9f7fa9854cfd8267.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
  {
     "name": "신인자",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=shininja&leftBase=https://pub-aa35882c178f4b8083c06e967b1a4a03.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
