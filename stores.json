@@ -23,15 +23,15 @@
     "name": "황소",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=hwangso&leftBase=https://pub-4ccb9278ccfa46eb9f7fa9854cfd8267.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
- {
+  {
     "name": "신인자",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=shininja&leftBase=https://pub-aa35882c178f4b8083c06e967b1a4a03.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
- {
+  {
     "name": "교촌금오",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=kyochon-geumo&leftBase=https://pub-801735ffa2944d099afeb055d36737a0.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
- {
+  {
     "name": "캠프306",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=camp306&leftBase=https://pub-af03640b55be4bfab5f7b3a20dc00211.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   },
@@ -118,5 +118,9 @@
   {
     "name": "홍연재",
     "url": "https://localvision-for-sosang-ujb.pages.dev/?store=hongyeonjae&leftBase=https://pub-6dbda320a0554be68195c408420f3270.r2.dev&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
+  },
+  {
+    "name": "CMS 파일럿 JP분식",
+    "url": "https://localvision-for-sosang-ujb.pages.dev/?store=pilot-jpbunsik&leftBase=https://pub-6a00ac235f014d7388636c5f12ef6976.r2.dev/pilot/jpbunsik&restart=07:00&restartMode=reload&restartJitterSec=0&cacheMax=20"
   }
 ]
